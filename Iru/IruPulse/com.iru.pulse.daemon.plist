@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Label</key>
+	<string>com.iru.pulse.daemon</string>
+	<key>ProgramArguments</key>
+	<array>
+		<string>/bin/bash</string>
+		<string>/usr/local/iru-pulse/pulse-collector.sh</string>
+	</array>
+	<!-- Run once at load, then every CollectionInterval seconds.
+	     The installer rewrites StartInterval to match the configured
+	     CollectionInterval at install time. Default: 300s (5 minutes). -->
+	<key>RunAtLoad</key>
+	<true/>
+	<key>StartInterval</key>
+	<integer>300</integer>
+	<key>StandardOutPath</key>
+	<string>/var/log/iru-pulse.log</string>
+	<key>StandardErrorPath</key>
+	<string>/var/log/iru-pulse.log</string>
+	<!-- Keep the agent light: it is a short-lived collector, not a resident. -->
+	<key>ProcessType</key>
+	<string>Background</string>
+	<key>LowPriorityIO</key>
+	<true/>
+	<key>Nice</key>
+	<integer>10</integer>
+</dict>
+</plist>

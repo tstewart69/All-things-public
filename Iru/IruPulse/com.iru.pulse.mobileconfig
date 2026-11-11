@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>PayloadContent</key>
+	<array>
+		<dict>
+			<!-- Preference domain the collector reads from
+			     (/Library/Managed Preferences/com.iru.pulse.plist). -->
+			<key>PayloadType</key>
+			<string>com.iru.pulse</string>
+			<key>PayloadDisplayName</key>
+			<string>IruPulse Settings</string>
+			<key>PayloadIdentifier</key>
+			<string>com.iru.pulse.1A2B3C4D-0001-4E5F-9A0B-000000000001</string>
+			<key>PayloadUUID</key>
+			<string>1A2B3C4D-0001-4E5F-9A0B-000000000001</string>
+			<key>PayloadVersion</key>
+			<integer>1</integer>
+
+			<!-- ============================ GENERAL ============================ -->
+
+			<!-- REQUIRED: endpoint that receives telemetry JSON (Slack incoming
+			     webhook, custom ingest, Datadog, Elastic, webhook.site, …).
+			     Nothing ships until this is set AND Enabled is true. -->
+			<key>WebhookURL</key>
+			<string>https://example.com/replace-with-your-webhook</string>
+
+			<!-- Master on/off switch. false = agent no-ops every run
+			     (MDM kill switch) without uninstalling. -->
+			<key>Enabled</key>
+			<true/>
+
+			<!-- Seconds between runs. Also stamped into the LaunchDaemon
+			     StartInterval by the installer (floor 60s). -->
+			<key>CollectionInterval</key>
+			<integer>300</integer>
+
+			<!-- OPTIONAL free-form tag echoed into every payload
+			     (e.g. site/team/environment). Leave empty if unused. -->
+			<key>ExtraTags</key>
+			<string></string>
+
+			<!-- ======================= METRIC COLLECTION ======================= -->
+			<!-- Per-collector toggles. Disable one to skip that work and emit a
+			     null section in the payload. All default true. -->
+			<key>CollectCPU</key>
+			<true/>
+			<key>CollectMemory</key>
+			<true/>
+			<key>CollectDisk</key>
+			<true/>
+			<key>CollectUptime</key>
+			<true/>
+			<key>CollectThermal</key>
+			<true/>
+
+			<!-- ============================= ALERTS ============================ -->
+
+			<!-- Master alert switch. When true, the collector evaluates the
+			     thresholds below each run and POSTs an alert on breach. -->
+			<key>AlertsEnabled</key>
+			<false/>
+
+			<!-- Where alerts POST. Leave empty to reuse WebhookURL above.
+			     Payload is {"text": "<message>", "alert": {…}} — the text
+			     field renders in Slack; other ingests read the alert object. -->
+			<key>AlertWebhookURL</key>
+			<string></string>
+
+			<!-- Minimum seconds between repeat alerts of the SAME type, per
+			     device, so a sustained condition doesn't spam. -->
+			<key>AlertCooldown</key>
+			<integer>3600</integer>
+
+			<!-- Percentage thresholds (>=) that trigger an alert.
+			     Set to 0 to disable an individual threshold. -->
+			<key>CPUAlertThreshold</key>
+			<integer>90</integer>
+			<key>MemoryAlertThreshold</key>
+			<integer>90</integer>
+			<key>DiskAlertThreshold</key>
+			<integer>90</integer>
+
+			<!-- Fire an alert whenever the CPU is thermally throttled. -->
+			<key>ThermalAlertEnabled</key>
+			<true/>
+
+			<!-- ====================== CUSTOM ALERT MESSAGES ==================== -->
+			<!-- Message templates. Placeholders: {hostname} {serial} {user}
+			     {value} {threshold}. Delete a key to use the built-in default. -->
+			<key>AlertMessageCPU</key>
+			<string>High CPU on {hostname} ({serial}): {value}% (&gt;= {threshold}%)</string>
+			<key>AlertMessageMemory</key>
+			<string>High memory usage on {hostname} ({serial}): {value}% (&gt;= {threshold}%)</string>
+			<key>AlertMessageDisk</key>
+			<string>Low disk space on {hostname} ({serial}): {value}% used (&gt;= {threshold}%)</string>
+			<key>AlertMessageThermal</key>
+			<string>Thermal throttling on {hostname} ({serial}): CPU speed limit {value}%</string>
+		</dict>
+	</array>
+	<key>PayloadDisplayName</key>
+	<string>IruPulse Configuration</string>
+	<key>PayloadIdentifier</key>
+	<string>com.iru.pulse.config.1A2B3C4D-0000-4E5F-9A0B-000000000000</string>
+	<key>PayloadType</key>
+	<string>Configuration</string>
+	<key>PayloadUUID</key>
+	<string>1A2B3C4D-0000-4E5F-9A0B-000000000000</string>
+	<key>PayloadVersion</key>
+	<integer>1</integer>
+	<key>PayloadScope</key>
+	<string>System</string>
+	<key>PayloadDescription</key>
+	<string>Configures the IruPulse endpoint telemetry collector.</string>
+	<key>PayloadOrganization</key>
+	<string>IruPulse</string>
+</dict>
+</plist>

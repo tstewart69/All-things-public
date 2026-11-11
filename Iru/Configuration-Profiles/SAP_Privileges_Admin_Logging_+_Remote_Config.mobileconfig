@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>PayloadContent</key>
+	<array>
+		<dict>
+			<key>AllowCLIBiometricAuthentication</key>
+			<true/>
+			<key>ExpirationInterval</key>
+			<integer>30</integer>
+			<key>ExpirationIntervalMax</key>
+			<integer>30</integer>
+			<key>HideSettingsButton</key>
+			<true/>
+			<key>HideSettingsFromDockMenu</key>
+			<true/>
+			<key>HideSettingsFromStatusItem</key>
+			<true/>
+			<key>PayloadDisplayName</key>
+			<string>SAP Privileges app</string>
+			<key>PayloadIdentifier</key>
+			<string>corp.sap.privileges.EC0AB355-43E2-44BD-8EAD-2A38B5FFC1C6</string>
+			<key>PayloadType</key>
+			<string>corp.sap.privileges</string>
+			<key>PayloadUUID</key>
+			<string>EC0AB355-43E2-44BD-8EAD-2A38B5FFC1C6</string>
+			<key>PayloadVersion</key>
+			<integer>1</integer>
+			<key>ReasonRequired</key>
+			<false/>
+			<key>RemoteLogging</key>
+			<dict>
+				<key>ServerAddress</key>
+				<string>https://script.google.com/macros/s/REPLACE_WITH_DEPLOYMENT_ID/exec</string>
+				<key>ServerType</key>
+				<string>webhook</string>
+				<key>WebhookCustomData</key>
+				<dict>
+					<key>name</key>
+					<string>$DEVICE_NAME</string>
+					<key>serial</key>
+					<string>$SERIAL_NUMBER</string>
+				</dict>
+			</dict>
+			<key>RequireAuthentication</key>
+			<true/>
+			<key>RevokePrivilegesAtLogin</key>
+			<true/>
+			<key>ShowInMenuBar</key>
+			<true/>
+		</dict>
+	</array>
+	<key>PayloadDisplayName</key>
+	<string>SAP - Admin Logging &amp; configuration</string>
+	<key>PayloadIdentifier</key>
+	<string>com.kandji.profile.custom.48c8100f-2926-477f-b312-533862fddc85</string>
+	<key>PayloadRemovalDisallowed</key>
+	<true/>
+	<key>PayloadScope</key>
+	<string>System</string>
+	<key>PayloadType</key>
+	<string>Configuration</string>
+	<key>PayloadUUID</key>
+	<string>77011ec4-b4d6-5ac0-a687-9f9305d34a2e</string>
+	<key>PayloadVersion</key>
+	<integer>1</integer>
+	<key>TargetDeviceType</key>
+	<integer>5</integer>
+</dict>
+</plist>

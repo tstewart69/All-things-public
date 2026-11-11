@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>PayloadContent</key>
+	<array>
+		<dict>
+			<key>PayloadDisplayName</key>
+			<string>Screensaver</string>
+			<key>PayloadIdentifier</key>
+			<string>com.iru.zoomroom.screensaver.7B7E508D-75D4-40F9-B449-BA61AA4FD7A5</string>
+			<key>PayloadType</key>
+			<string>com.apple.screensaver</string>
+			<key>PayloadUUID</key>
+			<string>7B7E508D-75D4-40F9-B449-BA61AA4FD7A5</string>
+			<key>PayloadVersion</key>
+			<integer>1</integer>
+			<key>askForPassword</key>
+			<true/>
+			<key>askForPasswordDelay</key>
+			<integer>2147483647</integer>
+			<key>idleTime</key>
+			<integer>0</integer>
+			<key>loginWindowIdleTime</key>
+			<integer>0</integer>
+		</dict>
+	</array>
+	<key>PayloadDescription</key>
+	<string>Disables screensaver and lock screen password prompt so Zoom Rooms auto-login after macOS updates. Targets Sonoma (14) and newer.</string>
+	<key>PayloadDisplayName</key>
+	<string>Zoom Rooms Auto login</string>
+	<key>PayloadIdentifier</key>
+	<string>com.kandji.profile.custom.a8a1e708-659c-4be0-b058-47e3544f8c35</string>
+	<key>PayloadScope</key>
+	<string>System</string>
+	<key>PayloadType</key>
+	<string>Configuration</string>
+	<key>PayloadUUID</key>
+	<string>f74b8484-18cb-577f-8f8e-abc8684bf61c</string>
+	<key>PayloadVersion</key>
+	<integer>1</integer>
+</dict>
+</plist>

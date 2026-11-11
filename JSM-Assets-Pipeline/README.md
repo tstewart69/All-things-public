@@ -47,6 +47,8 @@ Every step runs even if an earlier one fails, and the script exits non-zero if a
 | `workday_raas.py` | Runs a Workday custom report (RaaS) for fixed assets and keeps only the columns the adapter needs, with dates normalised. |
 | `deploy_job.sh` | Builds the container and deploys it as the Cloud Run Job, wiring in the secrets and the bucket mount. |
 | `deploy_schedule.sh` | Creates or updates the Cloud Scheduler trigger for the job. |
+| `Dockerfile` | Container image for the Cloud Run Job: Python, the ICU runtime the Data Manager clients need, and the scripts. |
+| `.gcloudignore` | What `--source .` uploads to Cloud Build. Keeps credentials and CSVs out of the image. |
 | `.env.example` | Every variable the pipeline reads, for local runs or as the list of secrets to create. |
 
 All dates are written as `yyyy/MM/d` so they parse the same way in every adapter.
@@ -101,12 +103,16 @@ printf '%s' 'the-value' | gcloud secrets create CS_CLIENT_ID \
 
 ### 2. Build the container
 
-`deploy_job.sh` deploys with `--source .`, so the folder needs a `Dockerfile` (not included here, since mine bundles the Atlassian clients). It should:
+`deploy_job.sh` deploys with `--source .`, so Cloud Build builds the image from the included [`Dockerfile`](Dockerfile). It:
 
-- copy this folder to `/app`, including `assets_data_manager/linux-x64/`
-- install Python 3 and `requirements.txt`
-- set `PROJECT_DIR=/app` and `DM_PLATFORM=linux-x64`
-- run `run_assets_pipeline.sh` as the command
+- starts from `python:3.12-slim-bookworm`, pinned to Debian bookworm so the `libicu72` package name stays valid
+- installs `ca-certificates` and `libicu72`, which the self-contained .NET Data Manager clients need to start
+- installs `requirements.txt`, then copies this folder to `/app`
+- sets `PROJECT_DIR=/app` and `DM_PLATFORM=linux-x64` and runs `run_assets_pipeline.sh`
+
+Before deploying, put the **linux-x64** Data Manager clients in `assets_data_manager/linux-x64/` (see the layout above). The clients are x86-64 builds, so the image must be `linux/amd64`. Cloud Build does that by default; on an Apple Silicon Mac, build locally with `--platform linux/amd64`.
+
+[`.gcloudignore`](.gcloudignore) controls what gets uploaded. It keeps `.env` and CSVs out of the image but includes `assets_data_manager/`. Don't delete it: without it, gcloud uses `.gitignore`, which excludes the clients.
 
 ### 3. Deploy the job and the schedule
 

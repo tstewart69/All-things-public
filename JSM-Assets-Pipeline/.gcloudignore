@@ -1,0 +1,19 @@
+# Controls what `gcloud run jobs deploy --source .` uploads to Cloud Build.
+# This file has to exist: without it gcloud falls back to .gitignore, which
+# excludes assets_data_manager/ and would leave the Data Manager binaries out
+# of the image.
+
+.gcloudignore
+.git/
+.gitignore
+
+# Never bake credentials into the image; Cloud Run injects them from Secret Manager.
+.env
+
+# Generated output and local clutter
+*.csv
+__pycache__/
+.DS_Store
+
+# Only the linux-x64 clients are needed in the container.
+assets_data_manager/osx-arm64/

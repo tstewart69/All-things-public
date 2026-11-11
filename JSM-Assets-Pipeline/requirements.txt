@@ -1,0 +1,2 @@
+requests>=2.31
+python-dotenv>=1.0  # optional; the scripts fall back to a built-in .env parser

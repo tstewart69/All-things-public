@@ -1,0 +1,10 @@
+# Credentials
+.env
+
+# Generated output
+*.csv
+
+# Atlassian Data Manager clients (downloaded separately)
+assets_data_manager/
+
+__pycache__/
